@@ -6,12 +6,18 @@ import { useParams, usePathname } from "next/navigation";
 
 export function MainNav({
     className,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     ...props
 }: React.HTMLAttributes<HTMLElement>) {
     const pathname = usePathname()
     const params = useParams()
 
     const routes = [
+        {
+            href: `/${params.storeId}`,
+            label: 'Overview',
+            active: pathname === `/${params.storeId}`,
+        },
         {
             href: `/${params.storeId}/settings`,
             label: 'Settings',

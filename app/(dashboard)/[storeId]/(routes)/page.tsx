@@ -2,6 +2,7 @@ import prismadb from "@/lib/prismadb"
 import React from "react"
 
 interface DashboardPageProps{
+    req: Request
     params: { storeId: string }
 }
 
