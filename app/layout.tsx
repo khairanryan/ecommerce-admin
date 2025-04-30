@@ -1,13 +1,21 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google"
+import { Geist, Geist_Mono } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 
-import { ModalProvider } from "@/providers/modal-provider";
+import ModalProviders from "@/providers/modal-provider";
 import { ToasterProvider } from "@/providers/toast-provider";
 
 import "./globals.css";
 
-const inter = Inter({ subsets: ['latin']})
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Admin Dashboard",
@@ -19,15 +27,17 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return ( 
+  return (
     <ClerkProvider>
-        <html lang="en">
-            <body className={inter.className}>
-              <ToasterProvider />
-              <ModalProvider />
-              {children}
-            </body>
-        </html>
+      <html lang="en">
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          >
+            <ToasterProvider />
+            <ModalProviders />
+            {children}
+        </body>
+      </html>
     </ClerkProvider>
   );
 }
